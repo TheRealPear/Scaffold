@@ -53,8 +53,8 @@ public class ScaffoldWorld {
     }
 
     public World create(WorldType type, Environment env, long seed) {
-        Preconditions.checkArgument(!isOpen(), "World already loaded.");
-        Preconditions.checkArgument(!isCreated(), "World already created.");
+        Preconditions.checkArgument(!isOpen(), "This world is already loaded.");
+        Preconditions.checkArgument(!isCreated(), "A world with this name already exists.");
 
         Config config = new Config();
         config.set("type", type.name());
@@ -82,7 +82,7 @@ public class ScaffoldWorld {
         for (int x = min.getBlockX(); x <= max.getBlockX(); x++)
             for (int y = min.getBlockY(); y <= max.getBlockY(); y++)
                 for (int z = min.getBlockZ(); z <= max.getBlockZ(); z++)
-                    world.getBlockAt(x, y, z).setType(Material.GLASS);
+                    world.getBlockAt(x, y, z).setType(Material.BEDROCK);
 
         config.save(this.configFile);
 

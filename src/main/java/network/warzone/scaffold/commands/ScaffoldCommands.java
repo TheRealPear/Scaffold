@@ -44,12 +44,12 @@ public class ScaffoldCommands {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(worldName);
 
         if (!wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World not found.");
+            sender.sendMessage(ChatColor.RED + "The specified world was not found.");
             return;
         }
 
         if (!wrapper.isOpen()) {
-            sender.sendMessage(ChatColor.RED + "World not open.");
+            sender.sendMessage(ChatColor.RED + "The specified world not open.");
             return;
         }
 
@@ -77,7 +77,7 @@ public class ScaffoldCommands {
         boolean delete = !cmd.hasFlag('k');
 
         if (wrapper.isOpen() && delete) {
-            sender.sendMessage(ChatColor.RED + "World must be closed to archive and delete.");
+            sender.sendMessage(ChatColor.RED + "The specified world must be closed to archive and delete.");
             return;
         }
 
@@ -116,12 +116,12 @@ public class ScaffoldCommands {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(cmd.getString(0));
 
         if (wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World already created.");
+            sender.sendMessage(ChatColor.RED + "A world with this name already exists.");
             return;
         }
 
         if (wrapper.isOpen()) {
-            sender.sendMessage(ChatColor.RED + "World already open.");
+            sender.sendMessage(ChatColor.RED + "This world is already loaded.");
             return;
         }
 
@@ -143,7 +143,7 @@ public class ScaffoldCommands {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(cmd.getString(0));
 
         if (!wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World has not been created.");
+            sender.sendMessage(ChatColor.RED + "The specified world was not found.");
             return;
         }
 
@@ -175,12 +175,12 @@ public class ScaffoldCommands {
         }
 
         if (!wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World has not been created.");
+            sender.sendMessage(ChatColor.RED + "The specified world was not found.");
             return;
         }
 
         if (!wrapper.isOpen()) {
-            sender.sendMessage(ChatColor.RED + "World is not opened.");
+            sender.sendMessage(ChatColor.RED + "The specified world is not opened.");
             return;
         }
 
@@ -218,7 +218,7 @@ public class ScaffoldCommands {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(worldName);
 
         if (!wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World not found.");
+            sender.sendMessage(ChatColor.RED + "The specified world was not found.");
             return;
         }
 
@@ -231,7 +231,7 @@ public class ScaffoldCommands {
                 Zip.create(wrapper.getFolder(), zip);
             } catch (Exception e) {
                 e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + "Failed to compress.");
+                sender.sendMessage(ChatColor.RED + "Failed to compress the specified world.");
                 return;
             }
 
@@ -261,7 +261,7 @@ public class ScaffoldCommands {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(cmd.getString(1));
 
         if (wrapper.isCreated()) {
-            sender.sendMessage(ChatColor.RED + "World already created.");
+            sender.sendMessage(ChatColor.RED + "A world with this name already exists.");
             return;
         }
 
