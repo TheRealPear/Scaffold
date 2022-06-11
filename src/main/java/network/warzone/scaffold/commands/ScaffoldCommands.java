@@ -30,7 +30,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ScaffoldCommands {
 
     @CommandPermissions("scaffold.command.lock")
-    @Command(aliases = "lock", desc = "Lock a world at this time.", min = 1, max = 1, usage = "<world>")
+    @Command(
+            aliases = "lock",
+            desc = "Lock a world at this time.",
+            min = 1, max = 1,
+            usage = "<world>"
+            )
     public static void lock(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.lock")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -61,7 +66,13 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.archive")
-    @Command(aliases = "archive", desc = "Archive and delete a world. Use -k to keep on server.", min = 1, max = 1, usage = "<world>", flags = "k")
+    @Command(
+            aliases = "archive",
+            desc = "Archive and delete a world. Use -k to keep on server.",
+            min = 1, max = 1,
+            usage = "<world>",
+            flags = "k"
+            )
     public static void archive(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.archive")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -80,9 +91,6 @@ public class ScaffoldCommands {
             sender.sendMessage(ChatColor.RED + "The specified world must be closed to archive and delete.");
             return;
         }
-
-        World world = wrapper.getWorld().get();
-        world.save();
 
         File folder = wrapper.getFolder();
         File archives = new File("scaffold-archives");
@@ -107,7 +115,13 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.create")
-    @Command(aliases = "create", desc = "Create a new, empty world.", min = 1, max = 1, usage = "<world>", flags = "te")
+    @Command(
+            aliases = "create",
+            desc = "Create a new, empty world.",
+            min = 1, max = 1,
+            usage = "<world>",
+            flags = "te"
+            )
     public static void create(CommandContext cmd, CommandSender sender) throws CommandNumberFormatException {
         if (!sender.hasPermission("scaffold.command.create")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -134,7 +148,12 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.open")
-    @Command(aliases = "open", desc = "Open a world and teleport to it.", min = 1, max = 1, usage = "<world>")
+    @Command(
+            aliases = {"open", "world"},
+            desc = "Open a world and teleport to it.",
+            min = 1, max = 1,
+            usage = "<world>"
+            )
     public static void open(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.open")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -165,7 +184,12 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.close")
-    @Command(aliases = "close", desc = "Close a world and remove all players in it.", min = 1, max = 1, usage = "<world>")
+    @Command(
+            aliases = "close",
+            desc = "Close a world and remove all players in it.",
+            min = 1, max = 1,
+            usage = "<world>"
+            )
     public static void close(CommandContext cmd, CommandSender sender) {
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(cmd.getString(0));
 
@@ -203,7 +227,12 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.export")
-    @Command(aliases = "export", desc = "Export a world and provide a download link.", min = 0, max = 1, usage = "<world>")
+    @Command(
+            aliases = "export",
+            desc = "Export a world and provide a download link.",
+            min = 0, max = 1,
+            usage = "<world>"
+            )
     public static void upload(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.upload")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -250,7 +279,12 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.import")
-    @Command(aliases = "import", desc = "Import a world.", min = 2, max = 2, usage = "<link ending in .zip> <world>")
+    @Command(
+            aliases = "import",
+            desc = "Import a world.",
+            min = 2, max = 2,
+            usage = "<link ending in .zip> <world>"
+            )
     public static void download(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.import")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
@@ -292,7 +326,13 @@ public class ScaffoldCommands {
     }
 
     @CommandPermissions("scaffold.command.worlds")
-    @Command(aliases = "worlds", desc = "Show all worlds.", min = 0, max = 1, flags = "l", help = "(search)")
+    @Command(
+            aliases = "worlds",
+            desc = "Show all worlds.",
+            min = 0, max = 1,
+            flags = "l",
+            help = "(search)"
+            )
     public static void worlds(CommandContext cmd, CommandSender sender) {
         if (!sender.hasPermission("scaffold.command.worlds")) {
             sender.sendMessage(ChatColor.RED + "You do not have permission.");
