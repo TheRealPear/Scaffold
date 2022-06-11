@@ -13,7 +13,8 @@ import org.bukkit.util.Vector;
 import java.io.File;
 import java.util.Optional;
 
-@ToString(exclude = {"folder", "configFile"}) @Data
+@ToString(exclude = {"folder", "configFile"})
+@Data
 public class ScaffoldWorld {
 
     private final String name;
@@ -66,13 +67,14 @@ public class ScaffoldWorld {
         world.setAutoSave(true);
         world.save();
 
-        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-        world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
-        world.setGameRule(GameRule.DISABLE_ELYTRA_MOVEMENT_CHECK, true);
-        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
-        world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, false);
-        world.setGameRule(GameRule.RANDOM_TICK_SPEED, 0);
+        //TODO Allow for better default gamerules configuration in the future
+        world.setGameRuleValue("commandBlockOutput", "false");
+        world.setGameRuleValue("keepInventory", "true");
+        world.setGameRuleValue("doDaylightCycle", "false");
+        world.setGameRuleValue("doMobSpawning", "false");
+        world.setGameRuleValue("mobGriefing", "false");
+        world.setGameRuleValue("logAdminCommands", "false");
+        world.setGameRuleValue("randomTickSpeed", "0");
 
         Vector min = new Vector(-1, 0, -1);
         Vector max = new Vector(1, 0, 1);
@@ -120,7 +122,7 @@ public class ScaffoldWorld {
         creator.generator(new NullChunkGenerator());
         if (config.isPresent()) {
             WorldType type = WorldType.valueOf(config.get().getAsString("type").toUpperCase());
-            Environment environment =  Environment.valueOf(config.get().getAsString("environment").toUpperCase());
+            Environment environment = Environment.valueOf(config.get().getAsString("environment").toUpperCase());
             long seed = config.get().getLong("seed");
 
             creator.type(type);

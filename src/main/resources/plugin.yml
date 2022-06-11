@@ -1,6 +1,66 @@
 name: Scaffold
-description: Manage a build server.
-main: network.warzone.scaffold.Scaffold
 version: ${project.version}
-authors: [Avicus, Minehut, Warzone]
-api-version: 1.13
+description: World management plugin for build servers.
+main: network.warzone.scaffold.Scaffold
+load: STARTUP
+authors: [ Avicus, Minehut, Warzone ]
+website: https://github.com/Warzone/Scaffold
+commands:
+  lock:
+    description: Lock a world at this time.
+    usage: /lock <world>
+  archive:
+    description: Archive and delete a world. Use -k to keep on server.
+    usage: /archive [-k] <world>
+  create:
+    description: Create a new, empty world.
+    usage: /create <world>
+  open:
+    description: Open a world and teleport to it.
+    usage: /open <world>
+  close:
+    description: Close a world and remove all players in it.
+    usage: /close <world>
+  export:
+    description: Export a world and provide a download link.
+    usage: /export <world>
+  import:
+    description: Import a world.
+    usage: /import <link ending in .zip> <world>
+  worlds:
+    description: Show all worlds.
+    usage: /worlds
+permissions:
+  scaffold.command.lock:
+    default: op
+  scaffold.command.archive:
+    default: op
+  scaffold.command.create:
+    default: true
+  scaffold.command.open:
+    default: true
+  scaffold.command.close:
+    default: op
+  scaffold.command.export:
+    default: op
+  scaffold.command.import:
+    default: op
+  scaffold.command.worlds:
+    default: true
+  scaffold.*:
+    default: op
+    description: Wildcard permission for Scaffold
+    children:
+      scaffold.all: true
+    scaffold.all:
+      default: op
+      description: Wildcard permission for Scaffold (compatibility fallback)
+      children:
+        scaffold.command.lock: true
+        scaffold.command.archive: true
+        scaffold.command.create: true
+        scaffold.command.open: true
+        scaffold.command.close: true
+        scaffold.command.export: true
+        scaffold.command.import: true
+        scaffold.command.worlds: true
