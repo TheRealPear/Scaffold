@@ -17,6 +17,7 @@ commands:
     usage: /create <world>
   open:
     description: Open a world and teleport to it.
+    aliases: world
     usage: /open <world>
   close:
     description: Close a world and remove all players in it.
