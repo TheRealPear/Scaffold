@@ -11,3 +11,4 @@ Thumbs.db
 *.iml
 target
 dependency-reduced-pom.xml
+out
