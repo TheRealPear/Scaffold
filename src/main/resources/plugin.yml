@@ -31,6 +31,10 @@ commands:
   worlds:
     description: Show all worlds.
     usage: /worlds
+  hub:
+    description: Return to the main world of the server.
+    aliases: lobby
+    usage: /hub
 permissions:
   scaffold.command.lock:
     default: op
@@ -47,6 +51,8 @@ permissions:
   scaffold.command.import:
     default: op
   scaffold.command.worlds:
+    default: true
+  scaffold.command.hub:
     default: true
   scaffold.*:
     default: op
@@ -65,3 +71,4 @@ permissions:
         scaffold.command.export: true
         scaffold.command.import: true
         scaffold.command.worlds: true
+        scaffold.command.hub: true
