@@ -380,4 +380,30 @@ public class ScaffoldCommands {
         String list = Joiner.on(ChatColor.WHITE + ", ").join(names);
         sender.sendMessage(ChatColor.GRAY + prefix + ": " + list);
     }
+
+    @CommandPermissions("scaffold.command.hub")
+    @Command(
+            aliases = {"hub", "lobby"},
+            desc = "Return to the main world of the server.",
+            min = 0, max = 0
+    )
+    public static void hub(CommandContext cmd, CommandSender sender) {
+        if (!sender.hasPermission("scaffold.command.hub")) {
+            sender.sendMessage(ChatColor.RED + "You do not have permission.");
+            return;
+        }
+
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED + "You must be a player to run this command.");
+            return;
+        }
+
+        sender.sendMessage(ChatColor.YELLOW + "Teleporting to hub world...");
+        World main = Bukkit.getWorlds().get(0);
+        Player player = (Player) sender;
+        player.teleport(main.getSpawnLocation());
+
+
+
+    }
 }

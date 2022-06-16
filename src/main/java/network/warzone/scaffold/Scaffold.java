@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
 import com.sk89q.minecraft.util.commands.*;
 import network.warzone.scaffold.commands.ScaffoldCommands;
+import network.warzone.scaffold.commands.XmlCommands;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -41,6 +42,7 @@ public final class Scaffold extends JavaPlugin implements TabCompleter {
 
         CommandsManagerRegistration cmds = new CommandsManagerRegistration(this, this.commands);
         cmds.register(ScaffoldCommands.class);
+        //cmds.register(XmlCommands.class); WIP XML COMMANDS
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
             for (ScaffoldWorld wrapper : locked.keySet()) {
