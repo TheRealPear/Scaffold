@@ -125,6 +125,8 @@ public class ScaffoldWorld {
             Environment environment = Environment.valueOf(config.get().getAsString("environment").toUpperCase());
             long seed = config.get().getLong("seed");
 
+            creator.generateStructures(false);
+            creator.generatorSettings("3;minecraft:air;1");
             creator.type(type);
             creator.environment(environment);
             creator.seed(seed);
