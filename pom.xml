@@ -92,13 +92,26 @@
 
     <repositories>
         <repository>
-            <id>ashcon.app</id>
-            <url>https://repo.ashcon.app/content/repositories/snapshots</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
 
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>sportpaper-github</id>
+            <url>https://maven.pkg.github.com/Electroid/SportPaper</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>pgm-fyi</id>
+            <url>https://repo.pgm.fyi/snapshots</url>
+        </repository>
+
+        <repository>
+            <id>ashcon.app</id>
+            <url>https://repo.ashcon.app/content/repositories/snapshots</url>
         </repository>
     </repositories>
 
@@ -107,7 +120,7 @@
             <groupId>app.ashcon</groupId>
             <artifactId>sportpaper</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

@@ -1,13 +1,9 @@
 package network.warzone.scaffold.commands;
 
-import com.avaje.ebean.validation.NotNull;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
-import com.sk89q.minecraft.util.commands.CommandNumberFormatException;
 import com.sk89q.minecraft.util.commands.CommandPermissions;
 import network.warzone.scaffold.ScaffoldWorld;
-import org.bukkit.Bukkit;
-import org.apache.commons.io.FileUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -15,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
-import java.util.stream.Stream;
 
 public class XmlCommands {
 

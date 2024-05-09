@@ -10,12 +10,14 @@ import com.sk89q.minecraft.util.commands.CommandPermissions;
 import network.warzone.scaffold.Scaffold;
 import network.warzone.scaffold.ScaffoldWorld;
 import network.warzone.scaffold.Zip;
+import network.warzone.scaffold.utils.config.FtpManager;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -240,14 +242,24 @@ public class ScaffoldCommands {
         }
 
         String current = "---";
-        if (sender instanceof Player)
+        if (sender instanceof Player) {
             current = ((Player) sender).getWorld().getName();
+        }
 
         String worldName = cmd.getString(0, current);
         ScaffoldWorld wrapper = ScaffoldWorld.ofSearch(worldName);
 
         if (!wrapper.isCreated()) {
             sender.sendMessage(ChatColor.RED + "The specified world was not found.");
+            return;
+        }
+
+        FtpManager ftpManager = new FtpManager();
+        String username = ftpManager.getProperty("fileio_username");
+        String password = ftpManager.getProperty("fileio_password");
+
+        if (username == null || password == null) {
+            sender.sendMessage(ChatColor.RED + "API credentials are not set correctly.");
             return;
         }
 
@@ -258,23 +270,25 @@ public class ScaffoldCommands {
 
             try {
                 Zip.create(wrapper.getFolder(), zip);
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + "Failed to compress the specified world.");
-                return;
-            }
 
-            sender.sendMessage(ChatColor.YELLOW + "Uploading world, this may take a while depending on the map size...");
-            try {
-                HttpResponse<String> response = Unirest.post("https://transfer.sh/").header("Max-Downloads", "1").header("Max-Days", "3").field("upload-file", zip).asString();
-                String link = response.getBody();
+                sender.sendMessage(ChatColor.YELLOW + "Uploading world, this may take a while depending on the map size...");
+                HttpResponse<String> response = Unirest.post("https://file.io")
+                        .basicAuth(username, password)
+                        .field("file", zip)
+                        .asString();
+
+                if (response.getStatus() == 200) {
+                    JSONObject responseJson = new JSONObject(response.getBody());
+                    String link = responseJson.getString("link");
+                    sender.sendMessage(ChatColor.GREEN + "Upload complete: " + link);
+                } else {
+                    sender.sendMessage(ChatColor.RED + "Failed to upload world: " + response.getStatusText());
+                }
                 zip.delete();
-                sender.sendMessage(ChatColor.GREEN + "Upload complete: " + link);
             } catch (Exception e) {
                 e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + "Failed to upload world, see the server logs.");
+                sender.sendMessage(ChatColor.RED + "Failed to compress or upload the specified world.");
             }
-
         });
     }
 

@@ -1,7 +1,7 @@
 package network.warzone.scaffold.utils.config;
 
-import network.warzone.scaffold.utils.config.inject.ConfigInjector;
 import lombok.Getter;
+import network.warzone.scaffold.utils.config.inject.ConfigInjector;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;

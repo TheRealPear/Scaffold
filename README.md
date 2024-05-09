@@ -34,3 +34,5 @@ If you need any additional support with server setup or using Scaffold, you may 
 This project was originally based on a fork of Avicus Network's [Scaffold Build Plugin](https://github.com/Avicus/Scaffold) that was later updated for Minecraft 1.16.5 by Minehut and Warzone contributors. Kudos to them for their great work. 
 
 Additionally, Scaffold is made available under the [MIT License](https://github.com/Warzone/Scaffold/blob/master/LICENSE), which allows you to modify any aspects of this project as you see fit as long the original license is preserved.
+
+Credit for the net.querz package goes to Christopher White (https://github.com/cswhite2000) and Querz.

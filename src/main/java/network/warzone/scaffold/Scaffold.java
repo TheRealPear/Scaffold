@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
 import com.sk89q.minecraft.util.commands.*;
 import network.warzone.scaffold.commands.ScaffoldCommands;
-import network.warzone.scaffold.commands.XmlCommands;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,6 +11,9 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +31,7 @@ public final class Scaffold extends JavaPlugin implements TabCompleter {
     @Override
     public void onEnable() {
         instance = this;
+        setupConfig();
 
         //TODO Disabled large number warning for now but add back later with some changes
         //getServer().getPluginManager().registerEvents(new ScaffoldListener(), this);
@@ -97,5 +100,33 @@ public final class Scaffold extends JavaPlugin implements TabCompleter {
         }
         locked.put(wrapper, wrapper.getWorld().get().getFullTime());
         return true;
+    }
+
+    public void setupConfig() {
+        try {
+            String path = "plugins/Scaffold/config.properties"; // Path where the file will be stored
+            File configFile = new File(path);
+
+            // Check if the file already exists
+            if (!configFile.exists()) {
+                // Ensure the directory structure is there
+                configFile.getParentFile().mkdirs();
+                // Create the file
+                configFile.createNewFile();
+
+                // Write default properties to the file
+                try (FileWriter writer = new FileWriter(configFile)) {
+                    writer.write("fileio_username=defaultUsername\n");
+                    writer.write("fileio_password=defaultPassword\n");
+                } catch (IOException e) {
+                    System.out.println("An error occurred while writing to the config file.");
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Could not create the config.properties file.");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }
