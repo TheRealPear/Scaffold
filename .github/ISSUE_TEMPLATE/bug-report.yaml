@@ -1,0 +1,41 @@
+name: 🐛 Bug Report
+description: File a report to help us improve Scaffold.
+labels:
+  - bug
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+    validations:
+      required: true
+  - type: textarea
+    id: bug-reproduction
+    attributes:
+      label: Reproduce the bug, if possible.
+      description: >-
+        Tell us what happened that led to this issue occurring.
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Describe the expected behavior
+      description: >-
+        A clear and concise description of what you expected to happen.
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshots or Videos (if applicable)
+      description: >-
+        You may use image hosting services, such as [Imgur](https://imgur.com/), for screenshots. You
+        can also use [YouTube](https://www.youtube.com/) or [Streamable](https://streamable.com/) for video hosting.
+  - type: input
+    id: software
+    attributes:
+      label: Server Software and Version
+      placeholder: 'Spigot, Paper, SportPaper, etc...'
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: >-
+        Add any other context about the issue that may help us here.

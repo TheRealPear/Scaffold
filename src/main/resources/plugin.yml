@@ -1,6 +1,6 @@
 name: Scaffold
-description: Manage a build server.
+description: World management plugin for build servers.
+version: '${version}'
 main: network.warzone.scaffold.Scaffold
-version: ${project.version}
-authors: [Avicus, Minehut, Warzone]
-api-version: 1.13
+website: https://github.com/Warzone/Scaffold
+load: STARTUP

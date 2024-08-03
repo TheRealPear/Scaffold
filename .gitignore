@@ -1,4 +1,49 @@
+# macOS generated files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows generated files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux generated files
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Java and IntelliJ generated files
+**/build/
 .idea
 *.iml
 target
-dependency-reduced-pom.xml
+out
+
+# Gradle generated files
+.gradle
+!src/**/build/
+
+# Misc
+codemr
