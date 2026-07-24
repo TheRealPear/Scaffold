@@ -155,8 +155,4 @@ public class Config {
         }
         return (T) this.data.get(key);
     }
-
-    public ConfigInjector injector(Class<?> clazz) {
-        return new ConfigInjector(clazz, this);
-    }
 }
